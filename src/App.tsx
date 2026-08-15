@@ -100,7 +100,7 @@ export default function App() {
         />
         <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           {/* 引导区：始终在顶部，避免用户一进来就迷茫 */}
-          <section className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-br from-teal-500 to-cyan-500 p-6 text-white shadow-lg sm:p-8">
+          <section className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-400 p-6 text-white shadow-lg sm:p-8">
             <div className="flex items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] text-white/80">
               <Sparkles size={16} /> 哲学系 · AI 实习助手
             </div>
@@ -133,7 +133,7 @@ export default function App() {
           <section id="module-area" className="scroll-mt-20">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/70 px-4 py-3 text-sm shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
               <div className="flex items-center gap-2 font-medium">
-                <span className="rounded-full bg-teal-100 px-2 py-0.5 text-xs font-semibold text-teal-700 dark:bg-teal-900/50 dark:text-teal-300">
+                <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700 dark:bg-brand-900/50 dark:text-brand-300">
                   当前
                 </span>
                 {tabs[activeTab as keyof typeof tabs]}
@@ -145,19 +145,19 @@ export default function App() {
 
             {/* AI 指引：下一步建议 */}
             {ns && (
-              <div className="mt-6 flex flex-col items-start gap-3 rounded-2xl border border-teal-200 bg-teal-50 p-4 sm:flex-row sm:items-center sm:justify-between dark:border-teal-900/60 dark:bg-teal-950/30">
+              <div className="mt-6 flex flex-col items-start gap-3 rounded-2xl border border-brand-200 bg-brand-50 p-4 sm:flex-row sm:items-center sm:justify-between dark:border-brand-900/60 dark:bg-brand-950/30">
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 rounded-full bg-teal-600 p-1.5 text-white">
+                  <div className="mt-0.5 rounded-full bg-brand-600 p-1.5 text-white">
                     <Bot size={16} />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-teal-700 dark:text-teal-300">小菲的建议 · 下一步</div>
+                    <div className="text-xs font-semibold text-brand-700 dark:text-brand-300">小菲的建议 · 下一步</div>
                     <div className="text-sm text-slate-700 dark:text-slate-200">{ns.text}</div>
                   </div>
                 </div>
                 <button
                   onClick={() => go(ns.to)}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full bg-teal-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-700"
+                  className="inline-flex shrink-0 items-center gap-1 rounded-full bg-brand-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-700"
                 >
                   去 {tabs[ns.to as keyof typeof tabs].split(' ')[0]} <ArrowRight size={14} />
                 </button>

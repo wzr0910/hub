@@ -24,8 +24,8 @@ export default function Portfolio() {
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-teal-50 via-sky-50 to-cyan-50 p-5 shadow-sm sm:p-6 dark:border-slate-800 dark:from-teal-950/40 dark:via-purple-950/30 dark:to-pink-950/30">
-        <div className="flex items-center gap-2 text-teal-700 dark:text-teal-300">
+      <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-brand-50 via-brand-100 to-brand-200 p-5 shadow-sm sm:p-6 dark:border-slate-800 dark:from-brand-950/40 dark:via-purple-950/30 dark:to-pink-950/30">
+        <div className="flex items-center gap-2 text-brand-700 dark:text-brand-300">
           <Sparkles size={18} />
           <span className="text-xs font-medium uppercase tracking-widest">Product Case Study · 产品案例</span>
         </div>
@@ -52,12 +52,12 @@ export default function Portfolio() {
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2 text-xs">
-          <span className="rounded-full bg-white px-3 py-1 font-medium text-teal-700 shadow-sm dark:bg-slate-900 dark:text-teal-300">Vibe Coding</span>
-          <span className="rounded-full bg-white px-3 py-1 font-medium text-teal-700 shadow-sm dark:bg-slate-900 dark:text-teal-300">用户研究</span>
-          <span className="rounded-full bg-white px-3 py-1 font-medium text-teal-700 shadow-sm dark:bg-slate-900 dark:text-teal-300">需求设计</span>
-          <span className="rounded-full bg-white px-3 py-1 font-medium text-teal-700 shadow-sm dark:bg-slate-900 dark:text-teal-300">从 0 到 1 落地</span>
-          <span className="rounded-full bg-white px-3 py-1 font-medium text-teal-700 shadow-sm dark:bg-slate-900 dark:text-teal-300">移动端适配</span>
-          <span className="rounded-full bg-white px-3 py-1 font-medium text-teal-700 shadow-sm dark:bg-slate-900 dark:text-teal-300">双通道部署</span>
+          <span className="rounded-full bg-white px-3 py-1 font-medium text-brand-700 shadow-sm dark:bg-slate-900 dark:text-brand-300">Vibe Coding</span>
+          <span className="rounded-full bg-white px-3 py-1 font-medium text-brand-700 shadow-sm dark:bg-slate-900 dark:text-brand-300">用户研究</span>
+          <span className="rounded-full bg-white px-3 py-1 font-medium text-brand-700 shadow-sm dark:bg-slate-900 dark:text-brand-300">需求设计</span>
+          <span className="rounded-full bg-white px-3 py-1 font-medium text-brand-700 shadow-sm dark:bg-slate-900 dark:text-brand-300">从 0 到 1 落地</span>
+          <span className="rounded-full bg-white px-3 py-1 font-medium text-brand-700 shadow-sm dark:bg-slate-900 dark:text-brand-300">移动端适配</span>
+          <span className="rounded-full bg-white px-3 py-1 font-medium text-brand-700 shadow-sm dark:bg-slate-900 dark:text-brand-300">双通道部署</span>
         </div>
       </div>
 
@@ -194,7 +194,7 @@ export default function Portfolio() {
             <strong className="text-ink dark:text-slate-100">质量验证</strong>：用无头浏览器（Headless Edge + CDP）实测 5 个模块在不同输入下的真实计算结果；验证手机端无横向溢出
           </li>
         </ol>
-        <p className="rounded-xl bg-teal-50 px-3 py-2 text-xs text-teal-800 dark:bg-teal-950/40 dark:text-teal-200">
+        <p className="rounded-xl bg-brand-50 px-3 py-2 text-xs text-brand-800 dark:bg-brand-950/40 dark:text-brand-200">
           💡 Vibe Coding 不是"让 AI 写代码"，而是<strong>人能定义清楚要什么、AI 来实现、人来验收</strong>。这套流程可复用于任何小型工具类产品。
         </p>
       </Section>
@@ -251,7 +251,7 @@ export default function Portfolio() {
       </Section>
 
       {/* Footer CTA */}
-      <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-teal-50 p-5 text-center shadow-sm sm:p-6 dark:border-slate-800 dark:from-slate-900 dark:to-teal-950/40">
+      <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-brand-50 p-5 text-center shadow-sm sm:p-6 dark:border-slate-800 dark:from-slate-900 dark:to-brand-950/40">
         <p className="text-sm text-slate-600 dark:text-slate-300">
           以上是 PhilIntern 的产品思考。完整可访问版本：
         </p>
@@ -259,7 +259,7 @@ export default function Portfolio() {
           href="https://wzr0910.github.io/hub/"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center gap-2 rounded-full bg-teal-600 px-5 py-2 text-sm font-medium text-paper transition hover:bg-slate-800 dark:bg-accent dark:text-slate-950 dark:hover:bg-teal-300"
+          className="mt-3 inline-flex items-center gap-2 rounded-full bg-brand-600 px-5 py-2 text-sm font-medium text-paper transition hover:bg-slate-800 dark:bg-accent dark:text-slate-950 dark:hover:bg-brand-300"
         >
           打开 PhilIntern <ArrowRight size={16} />
         </a>

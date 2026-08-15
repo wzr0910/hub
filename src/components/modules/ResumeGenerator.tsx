@@ -51,7 +51,7 @@ export default function ResumeGenerator() {
         <textarea value={jd} onChange={(e) => setJd(e.target.value)} placeholder="岗位JD" rows={4} className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-0 dark:border-slate-700 dark:bg-slate-950" />
         <textarea value={material} onChange={(e) => setMaterial(e.target.value)} placeholder="可粘贴材料库，包含经历、能力、项目" rows={5} className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-0 dark:border-slate-700 dark:bg-slate-950" />
         <input value={major} onChange={(e) => setMajor(e.target.value)} placeholder="你的专业/背景（选填，如：哲学、中文、经济学）" className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-0 dark:border-slate-700 dark:bg-slate-950" />
-        <button onClick={handleGenerate} className="rounded-full bg-teal-600 px-4 py-2 text-sm text-paper" disabled={loading}>
+        <button onClick={handleGenerate} className="rounded-full bg-brand-600 px-4 py-2 text-sm text-paper" disabled={loading}>
           {loading ? '生成中…' : '生成简历版本'}
         </button>
       </div>
