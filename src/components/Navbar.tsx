@@ -22,7 +22,7 @@ export default function Navbar({ activeTab, onSelectTab, onOpenSettings }: Navba
         <div className="flex items-center gap-2">
           <span
             className="inline-flex rounded-full p-2"
-            style={{ background: 'var(--accent-bg)', color: 'var(--accent-text)' }}
+            style={{ background: 'rgba(139,157,119,0.18)', color: '#5c4033' }}
           >
             <Sparkles size={18} />
           </span>

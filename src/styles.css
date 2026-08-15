@@ -3,37 +3,53 @@
 @tailwind utilities;
 
 /* ============================================================
-   PhilIntern · 自然有机风（Natural Organic）
-   大地色系：暖米色场景 + 石色文字 + 琥珀/燕麦暖黄强调。
-   标题衬线、正文无衬线；大圆角、细石边、柔和浅影；纸张纹理。
-   唯一强调色：琥珀 #D4A373（仅用于主行动与高亮）。
+   PhilIntern · 自然有机风（Natural Organic）— 对齐 stylekit.top 官方定义
+   大地色系：深咖 #5c4033 主色 + 鼠尾草绿 #8b9d77 强调 + 暖米 #faf6f1 场景
+   + 琥珀 #d4a373 / 亚麻 #e9e0d4 / 灰绿 #75a191 点缀。
+   标题衬线、正文无衬线；大圆角(rounded-[2rem])、细石边、柔和浅影；
+   纸张纹理；500ms ease-in-out 慢节奏 + 悬停轻微下沉(earth press) + 文字转深绿(verdant tint)。
    ============================================================ */
 
 :root {
   color-scheme: light;
   font-family: ui-sans-serif, system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
 
-  /* 暖米色场景 */
-  --bg: #faf6f1;
-  --surface: #ffffff;
-  --border: #e7e0d6;
-  --text-strong: #3a342c;
+  /* 场景与表面 */
+  --bg: #faf6f1;            /* Warm Cream 主背景 */
+  --surface: #ffffff;       /* 卡片/输入表面（背景辅色 bg-white） */
+  --surface-soft: #e9e0d4; /* Linen 亚麻，hover 浅层 */
+  --border: #e7e0d6;        /* 暖石色细边 */
+  --border-strong: #d8cfc1;
+
+  /* 文字（暖色阶，绝非纯黑） */
+  --text-strong: #3f3730;
   --text-body: #6b645a;
   --text-weak: #8c857a;
 
-  /* 琥珀 / 燕麦暖黄 强调色 */
-  --accent: #d4a373;
-  --accent-text: #9a6a2f;
-  --accent-bg: rgba(212, 163, 115, 0.18);
-  --accent-border: rgba(212, 163, 115, 0.5);
+  /* 主色：深咖 Deep Earth（按钮 / 品牌） */
+  --primary: #5c4033;
+  --primary-hover: #4a3228;
+  --on-primary: #faf6f1;
 
-  --shadow-sm: 0 1px 2px rgba(58, 52, 44, 0.06), 0 4px 12px rgba(58, 52, 44, 0.05);
+  /* 强调色（五色大地系） */
+  --sage: #8b9d77;          /* Accent 1 鼠尾草绿（Hero / 焦点） */
+  --sage-deep: #6f7f5f;
+  --amber: #d4a373;         /* Accent 2 暖棕（次强调） */
+  --amber-deep: #b9803f;
+  --teal: #75a191;          /* Accent 4 灰绿（点缀） */
+  --linen: #e9e0d4;
+
+  /* 旧名兼容：accent 系列统一指向深咖主色 */
+  --accent: var(--primary);
+  --accent-text: var(--primary);
+  --accent-bg: rgba(92, 64, 51, 0.12);
+  --accent-border: rgba(92, 64, 51, 0.4);
+
+  --shadow-sm: 0 1px 2px rgba(63, 55, 48, 0.06), 0 6px 16px rgba(63, 55, 48, 0.06);
   --font-serif: 'Noto Serif SC', 'Songti SC', 'STSong', Georgia, 'Times New Roman', serif;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -41,32 +57,28 @@ body {
   background: var(--bg);
 }
 
-/* 暖米色场景 + 极淡纸张纹理 */
+/* 暖米场景 + 极淡大地色光晕（绿 + 棕） */
 .scene {
   min-height: 100vh;
   background-color: var(--bg);
   background-image:
-    radial-gradient(900px circle at 12% 0%, rgba(212, 163, 115, 0.10), transparent 55%),
-    radial-gradient(700px circle at 100% 100%, rgba(138, 154, 119, 0.10), transparent 55%);
+    radial-gradient(900px circle at 8% -5%, rgba(139, 157, 119, 0.10), transparent 55%),
+    radial-gradient(700px circle at 100% 105%, rgba(92, 64, 51, 0.08), transparent 55%);
   color: var(--text-body);
-  transition: background-color 400ms ease;
 }
 
-/* 标题统一衬线，正文无衬线 */
+/* 标题统一衬线；正文无衬线 */
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
   color: var(--text-strong);
 }
 
-/* 文字角色（暖石色阶） */
 .t-strong { color: var(--text-strong); }
 .t-body { color: var(--text-body); }
 .t-weak { color: var(--text-weak); }
-
-/* 琥珀强调文字 */
 .t-gold { color: var(--accent-text); }
 
-/* 2.5% 纸张噪点，柔化塑料感（暖色 multiply） */
+/* 纸张噪点（multiply 暖色，柔化塑料感） */
 .grain {
   position: fixed;
   inset: 0;
@@ -78,7 +90,7 @@ h1, h2, h3, h4 {
 }
 
 @layer components {
-  /* 面板（大）：导航、输入区等 */
+  /* 面板（导航、输入区等） */
   .glass {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -86,15 +98,20 @@ h1, h2, h3, h4 {
     box-shadow: var(--shadow-sm);
   }
 
-  /* 卡片（大）：方向性留白由布局控制，仅细边 + 浅影 */
+  /* 卡片（大）：细石边 + 浅影 + 慢节奏过渡 */
   .glass-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 2rem;
     box-shadow: var(--shadow-sm);
+    transition: border-color 500ms ease-in-out, box-shadow 500ms ease-in-out;
+  }
+  .glass-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: 0 1px 2px rgba(63, 55, 48, 0.06), 0 10px 26px rgba(63, 55, 48, 0.09);
   }
 
-  /* 按钮（中性 / 次） */
+  /* 次按钮 / 中性（胶囊全圆角） */
   .glass-btn {
     display: inline-flex;
     align-items: center;
@@ -106,11 +123,13 @@ h1, h2, h3, h4 {
     color: var(--text-strong);
     font-weight: 500;
     padding: 0.5rem 1.25rem;
-    transition: all 300ms ease;
+    transition: all 500ms ease-in-out;
   }
   .glass-btn:hover {
-    background: #f3ede3;
-    border-color: #d8cfc1;
+    background: var(--surface-soft);
+    border-color: var(--border-strong);
+    color: var(--sage-deep);      /* Verdant Tint：文字转深绿 */
+    transform: translateY(2px);   /* Soft Earth Press：轻微下沉 */
   }
   .glass-btn:active { transform: scale(0.97); }
   .glass-btn:focus-visible {
@@ -118,23 +137,23 @@ h1, h2, h3, h4 {
     box-shadow: 0 0 0 3px var(--accent-bg);
   }
 
-  /* 主行动按钮：琥珀暖黄（唯一强调色） */
+  /* 主行动按钮：深咖（主色） */
   .glass-btn-gold {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    background: var(--accent);
-    border: 1px solid var(--accent-border);
+    background: var(--primary);
+    border: 1px solid var(--primary-hover);
     border-radius: 9999px;
-    color: #3a342c;
+    color: var(--on-primary);
     font-weight: 600;
     padding: 0.5rem 1.25rem;
-    transition: all 300ms ease;
+    transition: all 500ms ease-in-out;
   }
   .glass-btn-gold:hover {
-    background: #c89357;
-    border-color: #b9803f;
+    background: var(--primary-hover);
+    transform: translateY(2px);
   }
   .glass-btn-gold:active { transform: scale(0.97); }
   .glass-btn-gold:focus-visible {
@@ -142,7 +161,7 @@ h1, h2, h3, h4 {
     box-shadow: 0 0 0 3px var(--accent-border);
   }
 
-  /* 输入框 */
+  /* 输入框（全圆角胶囊） */
   .glass-input {
     width: 100%;
     background: var(--surface);
@@ -151,13 +170,13 @@ h1, h2, h3, h4 {
     color: var(--text-strong);
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
-    transition: all 300ms ease;
+    transition: all 500ms ease-in-out;
   }
   .glass-input::placeholder { color: #a89f92; }
   .glass-input:focus {
     outline: none;
-    border-color: var(--accent-border);
-    box-shadow: 0 0 0 3px var(--accent-bg);
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(139, 157, 119, 0.25);
   }
 
   /* 标签 / 小药丸 */
@@ -170,7 +189,7 @@ h1, h2, h3, h4 {
     padding: 0.25rem 0.75rem;
     font-size: 0.75rem;
     font-weight: 500;
-    color: var(--accent-text);
+    color: var(--text-weak);
   }
 
   /* 图标按钮（导航右上） */
@@ -183,11 +202,13 @@ h1, h2, h3, h4 {
     border-radius: 9999px;
     color: var(--text-strong);
     padding: 0.5rem;
-    transition: all 300ms ease;
+    transition: all 500ms ease-in-out;
   }
   .glass-icon:hover {
-    background: #f3ede3;
-    border-color: #d8cfc1;
+    background: var(--surface-soft);
+    border-color: var(--border-strong);
+    color: var(--sage-deep);
+    transform: translateY(2px);
   }
   .glass-icon:focus-visible {
     outline: none;
@@ -195,7 +216,7 @@ h1, h2, h3, h4 {
   }
 }
 
-/* 减少动效偏好：关闭位移动画，保留可读性 */
+/* 减少动效偏好：关闭位移/缩放，保留可读性 */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition-duration: 0.001ms !important;
@@ -203,5 +224,6 @@ h1, h2, h3, h4 {
   }
   .glass-btn:hover,
   .glass-btn-gold:hover,
-  .glass-icon:hover { transform: none; }
+  .glass-icon:hover,
+  .glass-card:hover { transform: none; }
 }

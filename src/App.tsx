@@ -87,35 +87,53 @@ export default function App() {
         onOpenSettings={() => setSettingsOpen(true)}
       />
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        {/* Hero：琥珀暖色块，有机风强调色 */}
-        <section className="mb-6 rounded-[2rem] bg-[#d4a373] p-6 text-stone-800 sm:p-8">
-          <div className="flex items-center gap-2 text-sm font-medium">
-            <Sparkles size={16} /> 哲学系 · AI 实习助手
+        {/* Hero：鼠尾草绿大色块（自然有机风标志色） */}
+        <section className="relative mb-6 overflow-hidden rounded-[2rem] bg-[#8b9d77] p-6 text-[#faf6f1] sm:p-8">
+          {/* 有机柔光斑点 */}
+          <div aria-hidden="true" className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#faf6f1]/20 blur-2xl" />
+          <div aria-hidden="true" className="pointer-events-none absolute -bottom-12 -left-8 h-44 w-44 rounded-full bg-[#d4a373]/25 blur-2xl" />
+          <div className="relative">
+            <div className="flex items-center gap-2 text-sm font-medium text-[#faf6f1]/90">
+              <Sparkles size={16} /> 哲学系 · AI 实习助手
+            </div>
+            <h1 className="mt-3 text-3xl font-bold text-[#faf6f1] sm:text-5xl">把文科经历，翻译成职场语言</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-[#faf6f1]/90">
+              六个工具，陪你走完从「不知道怎么写简历」到「自信投递」的全过程。先选一个起点：
+            </p>
+            <button
+              onClick={() => go('potential')}
+              className="glass-btn-gold mt-5 px-6 py-3 text-sm"
+            >
+              从亮点挖掘开始 <ArrowRight size={14} />
+            </button>
           </div>
-          <h1 className="mt-3 text-3xl font-bold sm:text-5xl">把文科经历，翻译成职场语言</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-stone-700">
-            六个工具，陪你走完从「不知道怎么写简历」到「自信投递」的全过程。先选一个起点：
-          </p>
         </section>
 
-        {/* 三张入口卡（与引导区同级，不嵌套在卡片内） */}
+        {/* 三张入口卡（与引导区同级，不嵌套在卡片内）；图标用五色大地系点缀 */}
         <div className="mb-6 grid gap-3 sm:grid-cols-3">
-          {guides.map((g) => (
-            <button
-              key={g.key}
-              onClick={() => go(g.key)}
-              className="group flex flex-col items-start rounded-[2rem] border border-stone-200 bg-white p-4 text-left shadow-sm transition-colors duration-300 hover:bg-stone-50"
-            >
-              <span className="inline-flex rounded-2xl border border-stone-200 bg-[#faf6f1] p-2 text-stone-800">
-                {g.icon}
-              </span>
-              <div className="mt-3 font-semibold text-stone-800">{g.title}</div>
-              <div className="mt-1 text-xs leading-5 text-stone-500">{g.desc}</div>
-              <div className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#9a6a2f] transition-[gap] duration-300 group-hover:gap-2">
-                开始 <ArrowRight size={14} />
-              </div>
-            </button>
-          ))}
+          {guides.map((g, i) => {
+            const chipBg = ['rgba(139,157,119,0.18)', 'rgba(212,163,115,0.22)', 'rgba(92,64,51,0.12)'][i];
+            const chipColor = ['#5c4033', '#9a6a2f', '#5c4033'][i];
+            return (
+              <button
+                key={g.key}
+                onClick={() => go(g.key)}
+                className="group flex flex-col items-start rounded-[2rem] border border-stone-200 bg-white p-4 text-left shadow-sm transition-all duration-500 ease-in-out hover:-translate-y-0.5 hover:border-[#d8cfc1] hover:shadow-md"
+              >
+                <span
+                  className="inline-flex rounded-2xl border border-stone-200 p-2"
+                  style={{ background: chipBg, color: chipColor }}
+                >
+                  {g.icon}
+                </span>
+                <div className="mt-3 font-semibold text-[#3f3730]">{g.title}</div>
+                <div className="mt-1 text-xs leading-5 text-stone-500">{g.desc}</div>
+                <div className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#5c4033] transition-[gap,color] duration-500 ease-in-out group-hover:gap-2 group-hover:text-[#6f7f5f]">
+                  开始 <ArrowRight size={14} />
+                </div>
+              </button>
+            );
+          })}
         </div>
 
         <p className="mb-4 text-center text-xs text-stone-500">或点击顶部菜单，浏览全部 6 个工具。</p>
@@ -124,7 +142,7 @@ export default function App() {
         <section id="module-area" className="scroll-mt-20">
           <div className="glass mb-4 flex flex-wrap items-center justify-between gap-2 rounded-[2rem] px-4 py-3 text-sm">
             <div className="flex items-center gap-2 font-medium text-stone-800">
-              <span className="glass-chip text-[#9a6a2f]">当前</span>
+              <span className="glass-chip text-[#5c4033]">当前</span>
               {tabs[activeTab as keyof typeof tabs]}
             </div>
             <div className="text-stone-500">支持中文输入，结果默认以中文输出</div>
@@ -143,7 +161,7 @@ export default function App() {
                   <Bot size={16} />
                 </span>
                 <div>
-                  <div className="text-xs font-semibold text-[#9a6a2f]">小菲的建议 · 下一步</div>
+                  <div className="text-xs font-semibold text-[#5c4033]">小菲的建议 · 下一步</div>
                   <div className="text-sm text-stone-600">{ns.text}</div>
                 </div>
               </div>
