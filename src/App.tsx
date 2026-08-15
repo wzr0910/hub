@@ -59,13 +59,13 @@ export default function App() {
           onToggleDarkMode={() => setDarkMode((prev) => !prev)}
         />
         <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <section className="mb-6 rounded-3xl border border-slate-200 bg-white/70 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/70">
-            <div className="text-sm uppercase tracking-[0.3em] text-accent">哲学系实习助手</div>
-            <h1 className="mt-2 text-3xl font-semibold">面向文科生的实习求职辅助站</h1>
-            <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 dark:text-slate-300">
-              这里汇聚了简历素材挖掘、岗位匹配、HR 沟通与能力提升建议，帮助你从“不会写简历”到“能清晰表达自己的价值”。
-            </p>
-          </section>
+        <section className="mb-6 rounded-3xl bg-gradient-to-br from-accent to-ink p-6 text-white shadow-md">
+          <div className="text-sm uppercase tracking-[0.3em] text-white/80">哲学系实习助手</div>
+          <h1 className="mt-2 text-3xl font-semibold">面向文科生的实习求职辅助站</h1>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-white/85">
+            这里汇聚了简历素材挖掘、岗位匹配、HR 沟通与能力提升建议，帮助你从“不会写简历”到“能清晰表达自己的价值”。
+          </p>
+        </section>
           <section className="mb-4 flex items-center justify-between rounded-2xl border border-slate-200 bg-white/60 px-4 py-3 text-sm shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
             <div className="font-medium">当前模块：{tabs[activeTab as keyof typeof tabs]}</div>
             <div className="text-slate-600 dark:text-slate-400">支持中文输入，所有结果默认以中文输出。</div>

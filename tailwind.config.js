@@ -7,8 +7,8 @@ export default {
       colors: {
         ink: '#10233F',
         paper: '#F7F3EA',
-        accent: '#4C6A8A',
-        soft: '#D9E2EA',
+        accent: '#5B5BD6',
+        soft: '#E8E6F7',
       },
       fontFamily: {
         serif: ['"Noto Serif SC"', 'serif'],

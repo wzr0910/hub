@@ -22,7 +22,7 @@ export default function Navbar({ activeTab, onSelectTab, onOpenSettings, darkMod
     <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-paper/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
-          <div className="rounded-full bg-ink p-2 text-paper dark:bg-accent">
+          <div className="rounded-full bg-accent p-2 text-paper">
             <Sparkles size={18} />
           </div>
           <div>
@@ -37,7 +37,7 @@ export default function Navbar({ activeTab, onSelectTab, onOpenSettings, darkMod
               onClick={() => onSelectTab(tab.key)}
               className={`rounded-full px-3 py-2 text-sm transition ${
                 activeTab === tab.key
-                  ? 'bg-ink text-paper dark:bg-accent'
+                  ? 'bg-accent text-paper dark:bg-accent'
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200'
               }`}
             >
