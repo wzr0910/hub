@@ -9,7 +9,7 @@ export default function Settings({ open, onClose }: SettingsProps) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/30 px-4 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-800/40 px-4">
       <div className="glass w-full max-w-md p-6">
         <div className="mb-4 flex items-start justify-between gap-3">
           <div>
