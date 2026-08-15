@@ -19,49 +19,47 @@ const tabs = [
 
 export default function Navbar({ activeTab, onSelectTab, onOpenSettings, darkMode, onToggleDarkMode }: NavbarProps) {
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-paper/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-30 px-4 pt-3">
+      <nav className="glass-card mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 rounded-3xl px-4 py-3 sm:px-6">
         <div className="flex items-center gap-2">
-          <div className="rounded-full bg-brand-600 p-2 text-white">
+          <span
+            className="inline-flex rounded-full p-2"
+            style={{ background: 'var(--gold-bg)', color: 'var(--gold-text)' }}
+          >
             <Sparkles size={18} />
-          </div>
+          </span>
           <div>
-            <div className="text-lg font-semibold text-ink dark:text-slate-100">PhilIntern 哲学实习助手</div>
-            <div className="text-sm text-slate-600 dark:text-slate-400">为文科生的实习求职提供结构化支持</div>
+            <div className="text-lg font-semibold t-strong">PhilIntern 哲学实习助手</div>
+            <div className="text-sm t-weak">为文科生的实习求职提供结构化支持</div>
           </div>
         </div>
-        <nav className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => onSelectTab(tab.key)}
-              className={`rounded-full px-3 py-2 text-sm transition ${
-                activeTab === tab.key
-                  ? 'bg-brand-600 text-white dark:bg-brand-600'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200'
+              className={`rounded-2xl px-3 py-2 text-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                activeTab === tab.key ? 'glass-btn-gold' : 'glass-btn'
               }`}
             >
               {tab.label}
             </button>
           ))}
-        </nav>
+        </div>
         <div className="flex items-center gap-2">
           <button
             onClick={onToggleDarkMode}
-            className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200"
-            aria-label="切换暗色模式"
+            className="glass-icon"
+            aria-label="切换深色 / 浅色模式"
+            title={darkMode ? '切到浅色玻璃' : '切到深墨夜景'}
           >
             <Moon size={16} />
           </button>
-          <button
-            onClick={onOpenSettings}
-            className="rounded-full border border-slate-300 p-2 text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200"
-            aria-label="设置"
-          >
+          <button onClick={onOpenSettings} className="glass-icon" aria-label="设置" title="设置">
             <Settings size={16} />
           </button>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }

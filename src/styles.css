@@ -2,17 +2,246 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   PhilIntern · 玻璃拟态（Glassmorphism）双主题基础
+   玻璃无色，仅借背景之光；深色=深墨夜景，浅色=浅雾磨砂。
+   唯一强调色：香槟金 #E4B863（仅用于主行动与高亮文字）
+   ============================================================ */
+
 :root {
   color-scheme: light;
-  font-family: ui-sans-serif, system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: ui-sans-serif, system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+
+  /* 浅色玻璃（默认）：浅雾场景 + 浅磨砂玻璃 */
+  --scene:
+    radial-gradient(640px circle at 85% 12%, rgba(150, 180, 214, 0.45), transparent 60%),
+    radial-gradient(560px circle at 12% 88%, rgba(186, 204, 224, 0.42), transparent 60%),
+    #eaf0f6;
+  --glass-bg: rgba(255, 255, 255, 0.50);
+  --glass-border: rgba(255, 255, 255, 0.78);
+  --glass-shadow:
+    0 14px 36px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(15, 23, 42, 0.06);
+  --glass-sheen: linear-gradient(to bottom, rgba(255, 255, 255, 0.55), transparent 55%);
+  --text-strong: #0f172a;
+  --text-body: rgba(15, 23, 42, 0.78);
+  --text-weak: rgba(15, 23, 42, 0.52);
+  --gold: #e4b863;
+  --gold-text: #8a5a1e;
+  --gold-border: rgba(228, 184, 99, 0.55);
+  --gold-bg: rgba(228, 184, 99, 0.18);
+  --input-bg: rgba(255, 255, 255, 0.5);
+}
+
+.dark {
+  color-scheme: dark;
+  /* 深墨夜景：近黑底色 + 冷月光与暖香槟光斑 */
+  --scene:
+    radial-gradient(640px circle at 85% 12%, rgba(124, 156, 196, 0.25), transparent 60%),
+    radial-gradient(560px circle at 12% 88%, rgba(51, 81, 122, 0.32), transparent 60%),
+    #0b1322;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-shadow:
+    0 16px 40px rgba(3, 7, 18, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(2, 6, 16, 0.38);
+  --glass-sheen: linear-gradient(to bottom, rgba(255, 255, 255, 0.12), transparent 50%);
+  --text-strong: #ffffff;
+  --text-body: rgba(255, 255, 255, 0.80);
+  --text-weak: rgba(255, 255, 255, 0.52);
+  --gold: #e4b863;
+  --gold-text: #f3dca8;
+  --gold-border: rgba(228, 184, 99, 0.45);
+  --gold-bg: rgba(228, 184, 99, 0.14);
+  --input-bg: rgba(255, 255, 255, 0.06);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: #f8fafc;
 }
 
-* {
-  box-sizing: border-box;
+/* 背景场景：固定夜景/浅景，玻璃从中取色并模糊 */
+.scene {
+  min-height: 100vh;
+  background: var(--scene);
+  background-attachment: fixed;
+  color: var(--text-body);
+  transition: background 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 文字角色（随主题切换） */
+.t-strong { color: var(--text-strong); }
+.t-body { color: var(--text-body); }
+.t-weak { color: var(--text-weak); }
+
+/* 香槟金强调文字 */
+.t-gold { color: var(--gold); }
+
+/* 2.5% 胶片噪点，消除塑料感 */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+@layer components {
+  /* 玻璃面板（中）：导航、输入区等 */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  /* 玻璃卡片（大）：方向性阴影（顶光+底暗+外深）+ 顶部高光 */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(60px) saturate(180%);
+    -webkit-backdrop-filter: blur(60px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.5rem;
+    box-shadow: var(--glass-shadow);
+    background-image: var(--glass-sheen);
+  }
+
+  /* 玻璃按钮（中性） */
+  .glass-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+    color: var(--text-strong);
+    box-shadow:
+      0 4px 16px rgba(3, 7, 18, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(2, 6, 16, 0.2);
+    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.42);
+    box-shadow:
+      0 10px 32px rgba(3, 7, 18, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    transform: translateY(-0.125rem);
+  }
+  .glass-btn:active { transform: scale(0.97); }
+  .glass-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(228, 184, 99, 0.28), 0 8px 24px rgba(3, 7, 18, 0.4);
+  }
+
+  /* 主行动按钮：唯一强调色 香槟金 */
+  .glass-btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: var(--gold-bg);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid var(--gold-border);
+    border-radius: 1rem;
+    color: var(--gold-text);
+    font-weight: 600;
+    box-shadow:
+      0 4px 16px rgba(3, 7, 18, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(2, 6, 16, 0.2);
+    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-btn-gold:hover {
+    background: rgba(228, 184, 99, 0.28);
+    box-shadow:
+      0 10px 32px rgba(3, 7, 18, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transform: translateY(-0.125rem);
+  }
+  .glass-btn-gold:active { transform: scale(0.97); }
+  .glass-btn-gold:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(228, 184, 99, 0.4);
+  }
+
+  /* 玻璃输入框 */
+  .glass-input {
+    width: 100%;
+    background: var(--input-bg);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+    color: var(--text-strong);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -1px 0 rgba(2, 6, 16, 0.25);
+    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-input::placeholder { color: var(--text-weak); }
+  .glass-input:focus {
+    outline: none;
+    border-color: var(--gold-border);
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 0 0 3px rgba(228, 184, 99, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  /* 玻璃标签 / 小药丸 */
+  .glass-chip {
+    display: inline-flex;
+    align-items: center;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-body);
+  }
+
+  /* 玻璃图标按钮（导航右上） */
+  .glass-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 9999px;
+    color: var(--text-strong);
+    padding: 0.5rem;
+    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.42);
+  }
+}
+
+/* 减少动效偏好：关闭位移动画，保留可读性 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+  .glass-btn:hover,
+  .glass-btn-gold:hover,
+  .glass-icon:hover { transform: none; }
 }

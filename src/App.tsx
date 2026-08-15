@@ -90,7 +90,7 @@ export default function App() {
 
   return (
     <div className={darkMode ? 'dark' : ''}>
-      <div className="min-h-screen bg-paper text-ink transition-colors dark:bg-slate-950 dark:text-slate-100">
+      <div className="scene">
         <Navbar
           activeTab={activeTab}
           onSelectTab={go}
@@ -100,64 +100,68 @@ export default function App() {
         />
         <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           {/* 引导区：始终在顶部，避免用户一进来就迷茫 */}
-          <section className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-400 p-6 text-white shadow-lg sm:p-8">
-            <div className="flex items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] text-white/80">
-              <Sparkles size={16} /> 哲学系 · AI 实习助手
+          <section className="glass-card mb-3 p-6 text-left sm:p-8">
+            <div className="flex items-center gap-2 text-sm font-medium t-weak">
+              <Sparkles size={16} className="t-gold" /> 哲学系 · AI 实习助手
             </div>
-            <h1 className="mt-3 text-2xl font-bold sm:text-3xl">把文科经历，翻译成职场语言</h1>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-white/90">
+            <h1 className="mt-3 text-3xl font-semibold t-strong sm:text-5xl">把文科经历，翻译成职场语言</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-7 t-body">
               六个工具，陪你走完从「不知道怎么写简历」到「自信投递」的全过程。先选一个起点：
             </p>
-
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {guides.map((g) => (
-                <button
-                  key={g.key}
-                  onClick={() => go(g.key)}
-                  className="group flex flex-col items-start rounded-2xl bg-white/15 p-4 text-left backdrop-blur transition hover:bg-white/25"
-                >
-                  <div className="rounded-xl bg-white/20 p-2">{g.icon}</div>
-                  <div className="mt-3 font-semibold">{g.title}</div>
-                  <div className="mt-1 text-xs leading-5 text-white/85">{g.desc}</div>
-                  <div className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-white/90 transition-all group-hover:gap-2">
-                    开始 <ArrowRight size={14} />
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            <p className="mt-4 text-xs text-white/70">或点击顶部菜单，浏览全部 6 个工具。</p>
           </section>
+
+          {/* 三张入口卡（与引导区同级，不嵌套在卡片内） */}
+          <div className="mb-6 grid gap-3 sm:grid-cols-3">
+            {guides.map((g) => (
+              <button
+                key={g.key}
+                onClick={() => go(g.key)}
+                className="glass-card group flex flex-col items-start rounded-3xl p-4 text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5"
+              >
+                <span className="inline-flex rounded-xl border border-white/25 bg-white/15 p-2 t-strong">
+                  {g.icon}
+                </span>
+                <div className="mt-3 font-semibold t-strong">{g.title}</div>
+                <div className="mt-1 text-xs leading-5 t-weak">{g.desc}</div>
+                <div className="mt-3 inline-flex items-center gap-1 text-xs font-medium t-gold transition-all group-hover:gap-2">
+                  开始 <ArrowRight size={14} />
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <p className="mb-4 text-center text-xs t-weak">或点击顶部菜单，浏览全部 6 个工具。</p>
 
           {/* 模块区 */}
           <section id="module-area" className="scroll-mt-20">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/70 px-4 py-3 text-sm shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
-              <div className="flex items-center gap-2 font-medium">
-                <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700 dark:bg-brand-900/50 dark:text-brand-300">
-                  当前
-                </span>
+            <div className="glass mb-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl px-4 py-3 text-sm">
+              <div className="flex items-center gap-2 font-medium t-strong">
+                <span className="glass-chip t-gold">当前</span>
                 {tabs[activeTab as keyof typeof tabs]}
               </div>
-              <div className="text-slate-500 dark:text-slate-400">支持中文输入，结果默认以中文输出</div>
+              <div className="t-weak">支持中文输入，结果默认以中文输出</div>
             </div>
 
             {component}
 
             {/* AI 指引：下一步建议 */}
             {ns && (
-              <div className="mt-6 flex flex-col items-start gap-3 rounded-2xl border border-brand-200 bg-brand-50 p-4 sm:flex-row sm:items-center sm:justify-between dark:border-brand-900/60 dark:bg-brand-950/30">
+              <div className="glass-card mt-6 flex flex-col items-start gap-3 rounded-3xl p-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 rounded-full bg-brand-600 p-1.5 text-white">
+                  <span
+                    className="mt-0.5 inline-flex rounded-full p-1.5"
+                    style={{ background: 'var(--gold-bg)', color: 'var(--gold-text)' }}
+                  >
                     <Bot size={16} />
-                  </div>
+                  </span>
                   <div>
-                    <div className="text-xs font-semibold text-brand-700 dark:text-brand-300">小菲的建议 · 下一步</div>
-                    <div className="text-sm text-slate-700 dark:text-slate-200">{ns.text}</div>
+                    <div className="text-xs font-semibold t-gold">小菲的建议 · 下一步</div>
+                    <div className="text-sm t-body">{ns.text}</div>
                   </div>
                 </div>
                 <button
                   onClick={() => go(ns.to)}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full bg-brand-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-700"
+                  className="glass-btn-gold shrink-0 px-4 py-2 text-sm"
                 >
                   去 {tabs[ns.to as keyof typeof tabs].split(' ')[0]} <ArrowRight size={14} />
                 </button>
@@ -166,6 +170,7 @@ export default function App() {
           </section>
         </main>
         <Settings open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+        <div className="grain" aria-hidden="true" />
       </div>
     </div>
   );
