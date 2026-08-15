@@ -4,13 +4,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        // 玻璃拟态唯一强调色：香槟金（仅用于主行动/高亮文字）
-        gold: '#E4B863',
-        goldLight: '#F3DCA8',
-      },
       fontFamily: {
-        // 不使用 Inter / Roboto / Geist 等过度通用字体
+        // 自然有机风：标题衬线、正文无衬线；不使用 Inter / Roboto / Geist 等过度通用字体
+        serif: ['"Noto Serif SC"', '"Songti SC"', '"STSong"', 'Georgia', 'serif'],
         sans: ['ui-sans-serif', 'system-ui', '"PingFang SC"', '"Microsoft YaHei"', '"Noto Sans SC"', 'sans-serif'],
       },
     },
