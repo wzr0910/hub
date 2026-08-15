@@ -5,14 +5,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#10233F',
-        paper: '#F7F3EA',
-        accent: '#5B5BD6',
-        soft: '#E8E6F7',
+        // 冷调基底 + 青绿主色，与「孩子的游戏」的米白/陶土/衬线彻底区分
+        ink: '#0F172A',
+        paper: '#F8FAFC',
+        accent: '#0D9488', // teal-600
+        accentStrong: '#0F766E', // teal-700
+        soft: '#CCFBF1', // teal-100
       },
       fontFamily: {
         serif: ['"Noto Serif SC"', 'serif'],
-        sans: ['"Inter"', 'ui-sans-serif', 'system-ui'],
+        sans: ['ui-sans-serif', 'system-ui', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif'],
       },
     },
   },

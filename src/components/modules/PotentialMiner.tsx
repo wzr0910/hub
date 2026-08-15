@@ -39,7 +39,7 @@ export default function PotentialMiner() {
         <input value={major} onChange={(e) => setMajor(e.target.value)} placeholder="你的专业/背景（选填，如：哲学、中文）" className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-0 dark:border-slate-700 dark:bg-slate-950" />
         <textarea value={jd} onChange={(e) => setJd(e.target.value)} placeholder="粘贴 JD 或描述岗位要求" rows={5} className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-0 dark:border-slate-700 dark:bg-slate-950 md:col-span-2" />
       </div>
-      <button onClick={handleSubmit} className="rounded-full bg-ink px-4 py-2 text-sm text-paper" disabled={loading}>
+      <button onClick={handleSubmit} className="rounded-full bg-teal-600 px-4 py-2 text-sm text-paper" disabled={loading}>
         {loading ? '分析中…' : '开始挖掘'}
       </button>
       <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 whitespace-pre-wrap text-sm leading-7 text-slate-700 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300">

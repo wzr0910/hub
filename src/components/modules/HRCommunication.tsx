@@ -51,7 +51,7 @@ export default function HRCommunication() {
         <textarea value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="HR 可能问的问题" rows={4} className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-0 dark:border-slate-700 dark:bg-slate-950 md:col-span-2" />
         <input value={major} onChange={(e) => setMajor(e.target.value)} placeholder="你的专业/背景（选填，如：哲学、中文）" className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-0 dark:border-slate-700 dark:bg-slate-950 md:col-span-2" />
       </div>
-      <button onClick={handleGenerate} className="mt-3 rounded-full bg-ink px-4 py-2 text-sm text-paper" disabled={loading}>
+      <button onClick={handleGenerate} className="mt-3 rounded-full bg-teal-600 px-4 py-2 text-sm text-paper" disabled={loading}>
         {loading ? '生成中…' : '生成话术'}
       </button>
         <div className="mt-4 whitespace-pre-wrap rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm leading-7 text-slate-700 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300">
