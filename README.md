@@ -1,4 +1,4 @@
-# PhilIntern 哲学实习助手
+# PhilIntern 文科生AI求职助手
 
 这是一个基于 React + TypeScript + Tailwind CSS + Vite 的单页应用，面向哲学系学生提供实习求职辅助。
 

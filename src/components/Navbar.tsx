@@ -27,7 +27,7 @@ export default function Navbar({ activeTab, onSelectTab, onOpenSettings }: Navba
             <Sparkles size={18} />
           </span>
           <div>
-            <div className="text-lg font-bold text-stone-800">PhilIntern 哲学实习助手</div>
+            <div className="text-lg font-bold text-stone-800">PhilIntern 文科生AI求职助手</div>
             <div className="text-sm text-stone-500">为文科生的实习求职提供结构化支持</div>
           </div>
         </div>
