@@ -270,7 +270,7 @@ function buildPotential(f: AnalysisFields): string {
   }
   lines.push('把上面的回忆写成「做了什么 + 用了什么能力 + 结果如何」三句话，就是一段能写进简历的亮点。');
   lines.push('');
-  lines.push('（说明：以上分析完全基于你输入的 JD 真实计算得出，未调用任何 AI。）');
+  lines.push('（说明：以上分析完全基于你输入的 JD 真实计算得出，当前为演示模式。）');
 
   return lines.join('\n');
 }
@@ -342,7 +342,7 @@ function buildResume(f: AnalysisFields): string {
     lines.push(`我具备${matSkills.map(skillLabel).slice(0, 4).join('、') || '快速学习、沟通与执行'}等能力，能快速上手${rule.label}岗位；简历中已用具体经历佐证，欢迎进一步沟通。`);
   }
   lines.push('');
-  lines.push('（说明：以上简历由你输入的素材与 JD 真实比对生成，未调用任何 AI。）');
+  lines.push('（说明：以上简历由你输入的素材与 JD 真实比对生成，当前为演示模式。）');
 
   return lines.join('\n');
 }
@@ -409,7 +409,7 @@ function buildHR(f: AnalysisFields): string {
     lines.push('• 常见类型已覆盖：专业不对口、为什么选我们、缺点、薪资期望、自我介绍、抗压能力。');
   }
   lines.push('');
-  lines.push('（说明：以上话术基于你填写的岗位与优势真实生成，未调用任何 AI。）');
+  lines.push('（说明：以上话术基于你填写的岗位与优势真实生成，当前为演示模式。）');
 
   return lines.join('\n');
 }
@@ -468,7 +468,7 @@ function buildMatch(f: AnalysisFields): string {
     }
   }
   lines.push('');
-  lines.push('（说明：以上匹配度为基于词库的真实计算，未调用任何 AI。）');
+  lines.push('（说明：以上匹配度为基于词库的真实计算，当前为演示模式。）');
 
   return lines.join('\n');
 }
@@ -531,7 +531,7 @@ function buildBoost(f: AnalysisFields): string {
   lines.push('第 22-27 天：针对目标岗位再补 1 项最关键的差距能力，做出第 2 个作品。');
   lines.push('第 28-30 天：用作品集改写简历经历，并模拟 1 次面试。');
   lines.push('');
-  lines.push('（说明：以上计划基于 JD 与你现状的真实差距生成，全部 0 成本，未调用任何 AI。）');
+  lines.push('（说明：以上计划基于 JD 与你现状的真实差距生成，全部 0 成本，当前为演示模式。）');
 
   return lines.join('\n');
 }

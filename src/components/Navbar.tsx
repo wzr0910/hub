@@ -31,12 +31,12 @@ export default function Navbar({ activeTab, onSelectTab, onOpenSettings }: Navba
             <div className="text-sm text-stone-500">为文科生的实习求职提供结构化支持</div>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0" style={{ WebkitOverflowScrolling: 'touch' }}>
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => onSelectTab(tab.key)}
-              className={`rounded-full px-3 py-2 text-sm transition-colors duration-300 ${
+              className={`whitespace-nowrap rounded-full px-3 py-2 text-sm transition-colors duration-300 ${
                 activeTab === tab.key ? 'glass-btn-gold' : 'glass-btn'
               }`}
             >
