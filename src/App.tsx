@@ -8,6 +8,7 @@ import ResumeGenerator from './components/modules/ResumeGenerator';
 import HRCommunication from './components/modules/HRCommunication';
 import MatchAnalysis from './components/modules/MatchAnalysis';
 import CapabilityBooster from './components/modules/CapabilityBooster';
+import HistoryPanel from './components/HistoryPanel';
 
 const tabs = {
   portfolio: '产品案例 · Portfolio',
@@ -174,6 +175,8 @@ export default function App() {
             </div>
           )}
         </section>
+
+        <HistoryPanel />
       </main>
       <Settings open={settingsOpen} onClose={() => setSettingsOpen(false)} />
       <div className="grain" aria-hidden="true" />

@@ -549,18 +549,67 @@ export async function callOpenAI({
   // 轻微延时，保留“分析中”的加载体验（纯本地计算，实际很快）
   await new Promise((resolve) => setTimeout(resolve, 250));
 
+  let reply: string;
   switch (moduleKey) {
     case 'potential':
-      return buildPotential(fields);
+      reply = buildPotential(fields);
+      break;
     case 'resume':
-      return buildResume(fields);
+      reply = buildResume(fields);
+      break;
     case 'hr':
-      return buildHR(fields);
+      reply = buildHR(fields);
+      break;
     case 'match':
-      return buildMatch(fields);
+      reply = buildMatch(fields);
+      break;
     case 'boost':
-      return buildBoost(fields);
+      reply = buildBoost(fields);
+      break;
     default:
-      return '暂不支持该模块。';
+      reply = '暂不支持该模块。';
+  }
+
+  saveHistory(moduleKey, reply);
+  return reply;
+}
+
+// ---------------------------------------------------------------------------
+// 生成历史（本地保留最近 20 条，便于回看 / 复制；不涉及任何上传）
+// ---------------------------------------------------------------------------
+const HISTORY_KEY = 'philintern_history_v1';
+const HISTORY_MAX = 20;
+
+export function saveHistory(moduleKey: ModuleKey, text: string) {
+  try {
+    const list = loadHistory();
+    list.unshift({ moduleKey, text, time: Date.now() });
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(list.slice(0, HISTORY_MAX)));
+    try {
+      window.dispatchEvent(new Event('philintern:history'));
+    } catch {
+      /* 事件派发失败不影响保存 */
+    }
+  } catch {
+    /* localStorage 不可用时静默降级 */
+  }
+}
+
+export function loadHistory(): { moduleKey: string; text: string; time: number }[] {
+  try {
+    const raw = localStorage.getItem(HISTORY_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export function clearHistory() {
+  try {
+    localStorage.removeItem(HISTORY_KEY);
+  } catch {
+    /* ignore */
   }
 }
